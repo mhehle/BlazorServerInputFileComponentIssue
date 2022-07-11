@@ -1,0 +1,28 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<h3>Upload</h3>
+<p>Please select 300 files to upload</p>
+<InputFile OnChange="@UploadImages" multiple/>
+
+@code
+{
+   private const int MaxFiles = 100;
+    
+    private void UploadImages(InputFileChangeEventArgs args)
+    {
+        try
+        {
+            var files = args.GetMultipleFiles(MaxFiles);
+            foreach (var file in files)
+            {
+                Console.WriteLine(file.Name);
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+    }
+}
